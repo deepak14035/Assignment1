@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Assignment1</string>
+    <string name="questionText">is this a prime  number</string>
+    <string name="trueText">true</string>
+    <string name="falseText">false</string>
+    <string name="nextText">next</string>
+
+</resources>
