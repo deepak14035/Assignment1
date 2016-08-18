@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(savedInstanceState != null)
+        if(savedInstanceState != null)          //check for any previous values
             randomNumber=savedInstanceState.getInt(storeNumber);
         if(Integer.parseInt(storeNumber)==-1){
             rotateFlag=1;
         }
+        setTitle("prime numbers");
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -63,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
         questionID = (TextView)findViewById(R.id.questionID);
         randomFunction=new Random();
 
-        if(rotateFlag==1){
+        if(rotateFlag==1){      //if device is rotated, we load the previous number
             rotateFlag=0;
             Log.d("create", "starting");
         }else{
-            randomNumber=randomFunction.nextInt(1000);
+            randomNumber=randomFunction.nextInt(1000);  //generate random number
         }
         questionText="Is "+randomNumber+" a prime number?";
         questionID.setText(questionText);
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         checkAnswer(true);
 
     }
-    public void nextButton(View v) {
+    public void nextButton(View v) {        //generate a random number and put it in textView
         randomNumber=randomFunction.nextInt(1000);
         questionText = "Is "+randomNumber+" a prime number?";
         questionID.setText(questionText);
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(boolean answer){
         int i;
         boolean flag=true;
-        for(i=2;i<=randomNumber/2;i++){
+        for(i=2;i<=randomNumber/2;i++){         //check if the random number is prime or not
             if(randomNumber%i==0){
                 //System.out.println("Number is not prime");
                 flag=false;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         boolean check;
+        //check if the answer selected by user is correct
         if(answer==flag){
             check= true;
         }
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast displayAnswer;
         String correct="correct answer", incorrect="incorrect answer";
-
+        //diplay a toast
         if(check){
             displayAnswer=Toast.makeText(this, correct, Toast.LENGTH_SHORT);
         }
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        Log.d("rotate", "entered");
+        //if device is rotated, we save the current random number to the ID storenumber
         savedInstanceState.putInt(storeNumber, randomNumber);
         super.onSaveInstanceState(savedInstanceState);
     }

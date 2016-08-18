@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.deepak14035.assignment1.MainActivity">
+    tools:context="com.example.deepak14035.assignment1.MainActivity"
+    android:background="#ffe875">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,14 +22,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/falseText"
         android:id="@+id/falseID"
         android:layout_below="@+id/questionID"
         android:layout_toStartOf="@+id/questionID"
         android:layout_marginTop="67dp"
         android:textSize="18sp"
         android:onClick="falseButton"
-        android:minWidth="140dp" />
+        android:minWidth="140dp"
+        android:background="@mipmap/falseicon" />
 
     <Button
         android:layout_width="wrap_content"
@@ -38,17 +39,17 @@
         android:layout_toRightOf="@+id/questionID"
         android:layout_toEndOf="@+id/questionID"
         android:textSize="18sp"
-        android:text="@string/trueText"
         android:onClick="trueButton"
-        android:minWidth="100dp" />
+        android:minWidth="100dp"
+        android:background="@mipmap/checkmark" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nextText"
         android:id="@+id/nextID"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
-        android:onClick="nextButton"/>
+        android:onClick="nextButton"
+        android:background="@mipmap/nexticon" />
 </RelativeLayout>

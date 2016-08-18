@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.deepak14035.assignment1.MainActivity">
+    tools:context="com.example.deepak14035.assignment1.MainActivity"
+    android:background="#ffe875">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,12 +23,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/falseText"
         android:id="@+id/falseID"
-        android:layout_marginTop="44dp"
         android:textSize="18sp"
         android:onClick="falseButton"
-        android:layout_below="@+id/questionID"
+        android:background="@mipmap/falseicon"
+        android:layout_below="@+id/nextID"
         android:layout_toLeftOf="@+id/questionID"
         android:layout_toStartOf="@+id/questionID" />
 
@@ -35,20 +35,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/trueID"
-        android:layout_alignTop="@+id/falseID"
-        android:layout_toRightOf="@+id/questionID"
-        android:layout_toEndOf="@+id/questionID"
         android:textSize="18sp"
-        android:text="@string/trueText"
-        android:onClick="trueButton"/>
+        android:onClick="trueButton"
+        android:background="@mipmap/checkmark"
+        android:layout_below="@+id/nextID"
+        android:layout_toRightOf="@+id/questionID"
+        android:layout_toEndOf="@+id/questionID" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nextText"
         android:id="@+id/nextID"
         android:textSize="20dp"
         android:onClick="nextButton"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/nexticon"/>
 </RelativeLayout>
