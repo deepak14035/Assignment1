@@ -2,5 +2,13 @@
     <string name="app_name">Prime Numbers</string>
     <string name="questionText">is this a prime  number</string>
     <string name="nextText">next</string>
+    <string name="hintButtonText">Hint</string>
+    <string name="hintWindowText">Check if it is divisible by any smaller number</string>
+    <string name="backText">go back</string>
+    <string name="cheatText">Are you sure you want to cheat?</string>
+    <string name="cheatBack">Back</string>
+    <string name="cheatButtonText">CHEAT</string>
+    <string name="cheatNoText">NO</string>
+    <string name="cheatYesText">Yes</string>
 
 </resources>

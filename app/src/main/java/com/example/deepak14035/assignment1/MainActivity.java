@@ -1,6 +1,8 @@
 package com.example.deepak14035.assignment1;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +18,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private int randomNumber=2;
+    private int randomNumber=2, hintPressedFlag=0;
     private Random randomFunction;
     private TextView questionID;
     private String questionText;
-    private String storeNumber="-1";
+    public static final String STORE_NUMBER="com.example.assignment1.number";
+    public static final String STORE_HINT_PRESSED="com.example.assignment1.hint";
+    public static final String STORE_CHEAT_PRESSED="com.example.assignment1.cheat";
+    public static final String CHEATED_OR_NOT="cheat";
+    public static final String CLASS_NAME="class";
     private int rotateFlag=0;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -32,11 +38,47 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(savedInstanceState != null)          //check for any previous values
-            randomNumber=savedInstanceState.getInt(storeNumber);
-        if(Integer.parseInt(storeNumber)==-1){
-            rotateFlag=1;
+
+        Intent intent = getIntent();
+        String numberReturned=intent.getStringExtra(STORE_NUMBER);
+        String isHintPressed=intent.getStringExtra(STORE_HINT_PRESSED);
+        String isCheatPressed=intent.getStringExtra(STORE_CHEAT_PRESSED);
+        String className=intent.getStringExtra(CLASS_NAME);
+        String cheatedOrNot=intent.getStringExtra(CHEATED_OR_NOT);
+        Log.d("create", "coming from "+className);
+        Log.d("create", "cheat   "+isCheatPressed);
+        Log.d("create", "hint   "+isHintPressed);
+        Log.d("create", "number "+numberReturned);
+
+        if(isHintPressed!=null){
+            //if(isHintPressed.equals("yes")){
+                Toast hintToast;
+                hintToast=Toast.makeText(this, "you pressed the hint button!", Toast.LENGTH_SHORT);
+                hintToast.show();
+            //}
         }
+        if(isCheatPressed!=null){
+            //if(isHintPressed.equals("yes")){
+            Toast hintToast;
+            if(cheatedOrNot.equals("yes")) {
+                hintToast = Toast.makeText(this, "you cheated!", Toast.LENGTH_SHORT);
+            }else{
+                hintToast = Toast.makeText(this, "you didn't cheat!", Toast.LENGTH_SHORT);
+            }
+            hintToast.show();
+            //}
+        }
+        if(numberReturned!=null){
+            randomNumber=Integer.parseInt(numberReturned);
+            Log.d("create", "number is "+numberReturned);
+        }
+
+
+        else if(savedInstanceState != null)          //check for any previous values
+            randomNumber=savedInstanceState.getInt(STORE_NUMBER);
+
+        rotateFlag=1;
+
         setTitle("prime numbers");
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -75,7 +117,19 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.start(client, viewAction);
     }
 
+    public void hintButton(View v) {
+        Intent hintIntent = new Intent(this, HintActivity.class);
+        hintIntent.putExtra(STORE_NUMBER, randomNumber + "");
 
+        startActivity(hintIntent);
+    }
+
+    public void cheatButton(View v) {
+        Intent cheatIntent = new Intent(this, CheatActivity.class);
+        cheatIntent.putExtra(STORE_NUMBER, randomNumber + "");
+
+        startActivity(cheatIntent);
+    }
 
     public void falseButton(View v) {
         checkAnswer(false);
@@ -87,8 +141,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void nextButton(View v) {        //generate a random number and put it in textView
         randomNumber=randomFunction.nextInt(1000);
-        questionText = "Is "+randomNumber+" a prime number?";
+        questionText = "Is " + randomNumber+" a prime number?";
         questionID.setText(questionText);
+
     }
 
     private void checkAnswer(boolean answer){
@@ -123,13 +178,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //if device is rotated, we save the current random number to the ID storenumber
-        savedInstanceState.putInt(storeNumber, randomNumber);
+        savedInstanceState.putInt(STORE_NUMBER, randomNumber);
         super.onSaveInstanceState(savedInstanceState);
     }
     @Override
     public void onStop() {
         super.onStop();
-
+        //Log.d(this, "Stop called");
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(

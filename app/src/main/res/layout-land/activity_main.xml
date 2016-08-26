@@ -46,9 +46,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nextID"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:onClick="nextButton"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:background="@mipmap/nexticon"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hintButtonText"
+        android:id="@+id/button"
+        android:onClick="hintButton"
+        android:layout_below="@+id/falseID"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

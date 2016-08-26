@@ -52,4 +52,22 @@
         android:textSize="20dp"
         android:onClick="nextButton"
         android:background="@mipmap/nexticon" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hintButtonText"
+        android:id="@+id/hintID"
+        android:layout_below="@+id/falseID"
+        android:layout_centerHorizontal="true"
+        android:onClick="hintButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cheatButtonText"
+        android:id="@+id/cheatID"
+        android:layout_below="@+id/hintID"
+        android:layout_centerHorizontal="true"
+        android:onClick="cheatButton" />
 </RelativeLayout>
